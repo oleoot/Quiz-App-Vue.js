@@ -21,6 +21,22 @@ export default {
     Header,
     QuestionBox,
   },
+  data() {
+    return {
+      questions: [],
+    };
+  },
+  mounted: function () {
+    fetch("https://opentdb.com/api.php?amount=10&category=11", {
+      method: "get",
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((jsonData) => {
+        this.questions = jsonData.results;
+      });
+  },
 };
 </script>
 
